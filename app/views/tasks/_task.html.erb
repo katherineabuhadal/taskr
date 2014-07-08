@@ -1,3 +1,4 @@
 <p><li><%= task.title %></li></p>
-
+<p><%= button_to "Mark as complete", task, method: :patch %>
+<p><%= button_to "Delete", task, method: :delete %>
 <p>&ndash;<%= task.body %></p>

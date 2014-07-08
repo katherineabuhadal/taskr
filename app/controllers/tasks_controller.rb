@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   def index
     @task = Task.new
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.not_completed
   end
 
   def create
@@ -16,7 +16,13 @@ class TasksController < ApplicationController
     else 
       render :index
     end
+  end
 
+  def update
+    task = current_user.tasks.find(params[:id])
+    task.update_attribute(:completed, true)
+    
+    redirect_to :tasks
   end
 
   private
