@@ -8,8 +8,15 @@ class TasksController < ApplicationController
   end
 
   def create
-    current_user.tasks.create(task_params)
-    redirect_to :tasks
+    @task = current_user.tasks.new(task_params)
+    @tasks = current_user.tasks
+
+    if @task.save
+      redirect_to :tasks
+    else 
+      render :index
+    end
+
   end
 
   private

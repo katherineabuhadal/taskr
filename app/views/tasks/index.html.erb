@@ -10,9 +10,5 @@
 <% end %>
 
 <ul>
-  <% @tasks.each do |task| %>
-    <p><li><%= task.title %></li></p>
-
-    <p>&ndash;<li><%= task.body %></li></p>
-  <% end %>
+  <%= render @tasks %>
 </ul>
