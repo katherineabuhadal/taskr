@@ -1,5 +1,5 @@
 <h1>My tasks</h1>
-<%= form_for @task do |form| %>
+<%= form_for @task, html: { id: "new_task_form" } do |form| %>
   <%= form.label :title %>
   <%= form.text_field :title %>
 
@@ -9,6 +9,6 @@
   <%= form.submit "Create task" %>
 <% end %>
 
-<ul>
+<ul id="tasks">
   <%= render @tasks %>
 </ul>
