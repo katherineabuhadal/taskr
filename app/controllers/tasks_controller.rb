@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-
   before_action :require_login
 
   def index
@@ -11,17 +10,12 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
     @tasks = current_user.tasks
 
-    if request.xhr?
-
-      if @task.save
-        render  @task
-      end
+    if @task.save
+      render  @task
     else
-      if @task.save
-        redirect_to :tasks
-      else
-        render :index
-      end
+      render partial: "error_messages", 
+        locals: { target: @task },
+        status: 422
     end
   end
 
@@ -29,7 +23,7 @@ class TasksController < ApplicationController
     task = current_user.tasks.find(params[:id])
     task.update_attribute(:completed, true)
 
-    redirect_to :tasks
+    render nothing: true, status: 200
   end
 
   private

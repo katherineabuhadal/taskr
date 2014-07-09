@@ -1,4 +1,9 @@
 <h1>My tasks</h1>
+
+<div id="error_messages"></div>
+
+<%= render "error_messages", target: @task  %>
+
 <%= form_for @task, html: { id: "new_task_form" } do |form| %>
   <%= form.label :title %>
   <%= form.text_field :title %>
